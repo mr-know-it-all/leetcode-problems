@@ -13,7 +13,7 @@
  */
 
 // reverseKGroup :: ListNode N -> (N, Number) -> N
-var reverseKGroup = function(head, k) {
+const reverseKGroup = (head, k) => {
     if(k === 1) return head;
 
     let currentNode = head;
