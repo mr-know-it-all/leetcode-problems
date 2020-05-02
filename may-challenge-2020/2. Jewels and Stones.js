@@ -11,4 +11,13 @@ const numJewelsInStones = (J, S) => {
     return result;
 };
 
+// SOLUTION 2:
+
+// numJewelsInStones :: (String, String) -> Number
+const numJewelsInStones = (J, S) => {
+    let result = 0;
+    for(let i = 0; i < S.length; i++) if(J.indexOf(S[i]) !== -1) result++;
+    return result;
+};
+
 // TODO: find a smart, faster, solution
