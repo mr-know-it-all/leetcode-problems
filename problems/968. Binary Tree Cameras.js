@@ -40,7 +40,7 @@ const minCameraCover = root => {
             // node that is not covered by right child
             !covered.has(node.right)
         ) {
-            // place camera on node, wi'll cover itself, its parent and children
+            // place camera on node, will cover itself, its parent and children
             covered.set(node, true);
             covered.set(parent, true);
             covered.set(node.left, true);
