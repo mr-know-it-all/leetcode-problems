@@ -16,12 +16,12 @@ const findComplement = num => {
 
 // findComplement :: Number -> Number
 const findComplement = num => {
-  const complementString = (
-    num
-      .toString(2)
-      .split('')
-      .reduce((acc, val) => acc + (val ^ 1), '')
-  );
+    const complementString = (
+        num
+          .toString(2)
+          .split('')
+          .reduce((acc, val) => acc + (val ^ 1), '')
+    );
 
-  return parseInt(complementString, 2);
+    return parseInt(complementString, 2);
 }
