@@ -16,7 +16,7 @@
  */
 
 // isCousin :: TreeNode N => (N, Numeber, Number) -> Boolean
-var isCousins = function(root, x, y) {
+const isCousins = (root, x, y) => {
     let a = null;
     let b = null;
 
