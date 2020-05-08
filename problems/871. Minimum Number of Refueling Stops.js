@@ -59,7 +59,7 @@ const minRefuelStops = (target, startFuel, stations) => {
         addToQueue(queue)(stationFuel);
         currentDistance = stationDistance;
     }
-    // we are now at the target, because we added it as the final station in out trip
+    // we are now at the target, because we added it as the final station in our trip
 
     return STOPS;
 }
