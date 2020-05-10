@@ -9,7 +9,7 @@
 
 // If the town judge exists and can be identified, return the label of the town judge.  Otherwise, return -1.
 
-// findJudge :: (Number, [[Number]]) -> Number
+// findJudge :: (Number, [[Number, Number]]) -> Number
 const findJudge = (N, trust) => {
     if(N === 1 && trust.length === 0) return N;
 
@@ -23,6 +23,7 @@ const findJudge = (N, trust) => {
         cache[trust[i][0]] = 1;
     }
 
+    // the judge doesn't trust anybody (he's not in cache) but everybody except himself (N - 1) trusts him
     for(let i = 1; i <= N; i++) if(!cache[i] && possibleJudges[i] === N - 1) return i;
 
     return -1;
