@@ -8,7 +8,6 @@
 
 
 // SOLUTION 1:
-// TODO: Add more efficient solution
 
 // floodFill :: ([[Number]], Number, Number, Number) -> [[Number]]
 const floodFill = (image, x, y, newColor) => {
@@ -19,6 +18,31 @@ const floodFill = (image, x, y, newColor) => {
         if(visited[`${x}-${y}`]) return;
         visited[`${x}-${y}`] = true;
 
+        if(image[x][y] === startColor) {
+            image[x][y] = newColor;
+
+            if(x + 1 < image.length) fill(x + 1, y); // DOWN
+            if(x - 1 >= 0) fill(x - 1, y); // UP
+            if(y + 1 < image[0].length) fill(x, y + 1); // RIGHT
+            if(y - 1 >= 0) fill(x, y - 1); // LEFT
+        }
+
+    }
+
+    fill(x, y);
+
+    return image;
+};
+
+// SOLUTION 2:
+
+// floodFill :: ([[Number]], Number, Number, Number) -> [[Number]]
+const floodFill = (image, x, y, newColor) => {
+    const startColor = image[x][y];
+
+    if(startColor === newColor) return image;
+
+    const fill = (x, y) => {
         if(image[x][y] === startColor) {
             image[x][y] = newColor;
 
