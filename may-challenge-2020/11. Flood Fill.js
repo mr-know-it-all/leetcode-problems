@@ -22,10 +22,10 @@ const floodFill = (image, x, y, newColor) => {
         if(image[x][y] === startColor) {
             image[x][y] = newColor;
 
-            if(x + 1 < image.length && image[x + 1][y] === startColor) fill(x + 1, y); // DOWN
-            if(x - 1 >= 0 && image[x - 1][y] === startColor) fill(x - 1, y); // UP
-            if(y + 1 < image[0].length && image[x][y + 1] === startColor) fill(x, y + 1); // RIGHT
-            if(y - 1 >= 0 && image[x][y - 1] === startColor) fill(x, y - 1); // LEFT
+            if(x + 1 < image.length) fill(x + 1, y); // DOWN
+            if(x - 1 >= 0) fill(x - 1, y); // UP
+            if(y + 1 < image[0].length) fill(x, y + 1); // RIGHT
+            if(y - 1 >= 0) fill(x, y - 1); // LEFT
         }
 
     }
