@@ -71,7 +71,7 @@ const solveSudoku = board => {
                 board[row][col] = value;
 
                 // recurse for the other cells
-                // this function will get the next empty cell and will go on untill it either backtracks (B) or fills all squares
+                // this function will get the next empty cell and will go on until it either backtracks (B) or fills all squares
                 if(findSolution()) return true;
 
                 // if no complete solution was found, previous choices will be removed
