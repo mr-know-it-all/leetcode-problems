@@ -4,7 +4,7 @@
 // The length of num is less than 10002 and will be ≥ k.
 // The given num does not contain any leading zero.
 
-// remo(veKdigits :: (String, Number) -> String
+// removeKdigits :: (String, Number) -> String
 const removeKdigits = function(num, k) {
     if(k >= num.length) return '0';
 
