@@ -6,7 +6,7 @@ function Trie() {
 
     // find :: (String, Boolean) -> Boolean
     this.find = function(word, strict) {
-        // we'll start ar the root of the trie
+        // we'll start at the root of the trie
         let currentNode = this.root;
 
         // for each i'th letter
