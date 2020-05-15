@@ -18,7 +18,7 @@ const smallestDistancePair = (nums, k) => {
     let D = nums[n - 1] - nums[0];
 
     // an index of this array will represent a value of a pair distance
-    // some of them will mst probably be empty, hence the 0 pre-setting
+    // some of them will most probably be empty, hence the 0 pre-setting
     // this will be used to store the pair distance values and sort of "sort" them at the same time (pun intended!)
     const arr = Array.from({ length: D }, () => 0);
 
