@@ -1,8 +1,11 @@
+
+// SOLUTION 1:
+
 // maxSubarraySumCircular :: [Number] -> Number
 const maxSubarraySumCircular = nums => {
     const n = nums.length;
 
-    if(n=== 1) return nums[0];
+    if(n === 1) return nums[0];
 
     // these will be used to build kadane's algorithm for the normal array
     let localAMax = -Infinity;
@@ -29,4 +32,30 @@ const maxSubarraySumCircular = nums => {
     if(globalAMax < 0) return globalAMax;
 
     return Math.max(globalAMax, globalBMax + sum);
+}
+
+// SOLUTION 2:
+// same as first solution, except for the way in which min is calculated
+
+// maxSubarraySumCircular :: [Number] -> Number
+const maxSubarraySumCircular = nums => {
+    let sum = 0;
+
+    let max = -Infinity;
+    let localMax = 0;
+
+    let min = Infinity;
+    let localMin = 0;
+
+    for(let i = 0; i < nums.length; i++) {
+        sum += nums[i];
+
+        localMax = Math.max(localMax + nums[i], nums[i]);
+        max = Math.max(max, localMax);
+
+        localMin = Math.min(localMin + nums[i], nums[i]);
+        min = Math.min(min, localMin);
+    }
+
+    return max > 0 ? Math.max(max, sum - min) : max;
 }
