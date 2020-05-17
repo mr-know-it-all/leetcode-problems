@@ -5,7 +5,7 @@
 // The order of output does not matter.
 
 // SOLUTION 1:
-// TODO: find faster solution:
+// TODO: find faster solution
 
 // findAnagrams :: (String, String) -> [Number]
 const findAnagrams = function(s, p) {
