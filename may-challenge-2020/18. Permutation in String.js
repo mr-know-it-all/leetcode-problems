@@ -27,8 +27,10 @@ const checkInclusion = (word, string) => {
             localHash[char] -= 1;
         }
 
+        // we have a match, we are done!
         return true;
     }
 
+    // no matches were found
     return false;
 };
