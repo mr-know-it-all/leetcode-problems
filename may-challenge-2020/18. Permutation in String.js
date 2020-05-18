@@ -12,7 +12,7 @@ const checkInclusion = (word, string) => {
     const hash = Array.from({ length: 26 }, () => 0);
     for(let i = 0; i < wordLen; i++) hash[word.charCodeAt(i) - 97]++;
 
-    // for every possible anagram stating from index i
+    // for every possible permutation starting from index i
     forEveryPossibleIndex:
     for(let i = 0; i + wordLen <= stringLen; i++) {
         // make a local copy of the characters hash
