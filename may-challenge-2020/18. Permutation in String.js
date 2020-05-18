@@ -2,7 +2,6 @@
 
 // SOLUTION 1:
 // this is almost identical to the problem from the previous day (Find All Anagrams in a String)
-// TODO: find a faster solution
 
 // checkInclusion :: (String, String) -> Boolean
 const checkInclusion = (word, string) => {
@@ -33,4 +32,34 @@ const checkInclusion = (word, string) => {
 
     // no matches were found
     return false;
+};
+
+// SOLUTION 2:
+// "sliding window"
+
+// checkInclusion :: (String, String) -> Boolean
+const checkInclusion = (word, string) => {
+    const wordLen = word.length;
+    const stringLen = string.length;
+
+    const wordHash = Array.from({ length: 26 }, () => 0);
+    const windowHash = Array.from({ length: 26 }, () => 0);
+
+    for(let i = 0; i < wordLen; i++) {
+        wordHash[word.charCodeAt(i) - 97]++;
+        // precompute the hash of the first possible permutation in string
+        windowHash[string.charCodeAt(i) - 97]++;
+    }
+
+
+    for(let i = 0; i + wordLen < stringLen; i++) {
+        // check if we have a valid window
+        if(equals(wordHash, windowHash)) return true;
+
+        // [i -> rest of windowSize] -> j
+        windowHash[string.charCodeAt(i + wordLen) - 97]++; // add j
+        windowHash[string.charCodeAt(i) - 97]--; // remove i
+    }
+
+    return equals(wordHash, windowHash);
 };
