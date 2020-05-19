@@ -32,7 +32,7 @@ StockSpanner.prototype.next = function(price) {
             bestIndex = this.prices[bestIndex - 1][1];
         }
 
-        // after we can't jump anymore contnue searching
+        // after we can't jump anymore continue searching
         while(bestIndex - 1 >= 0 && this.prices[bestIndex - 1][0] <= price) {
             bestIndex--;
         }
