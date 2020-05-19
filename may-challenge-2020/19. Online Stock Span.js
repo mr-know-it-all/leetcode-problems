@@ -4,6 +4,8 @@
 
 // For example, if the price of a stock over the next 7 days were [100, 80, 60, 70, 60, 75, 85], then the stock spans would be [1, 1, 1, 2, 1, 4, 6].
 
+// SOLUTION 1:
+
 // StockSpanner :: () -> ()
 const StockSpanner = function() {
     this.prices = [];
@@ -46,5 +48,24 @@ StockSpanner.prototype.next = function(price) {
         this.prices.push([price, n]);
         return 1;
     }
+};
 
+// SOLUTION 2:
+// (monotonic stack)
+
+// StockSpanner :: () -> ()
+const StockSpanner = function() {
+    const stack = [];
+
+    this.next = price => {
+        const n = stack.length;
+
+        let span = 1;
+        while(stack.length > 0 && stack[stack.length - 1][0] <= price) {
+            span += stack.pop()[1];
+        }
+        stack.push([price, span]);
+
+        return span;
+    }
 };
