@@ -10,7 +10,6 @@
  */
 
 // SOLUTION 1:
-// TODO: add faster solution
 
 // kthSmallest :: TreeNode T => (T, Number) -> Number
 const kthSmallest = function(root, k) {
@@ -21,4 +20,31 @@ const kthSmallest = function(root, k) {
     ]);
 
     return inOrder(root)[k - 1];
+};
+
+// SOLUTION 2:
+// TODO: add faster solution
+
+// kthSmallest :: TreeNode T => (T, Number) -> Number
+const kthSmallest = function(root, k) {
+    let stack = [];
+    let currentNode = root;
+    let count = k;
+
+    while(true) {
+        // go left as far as possible
+        while(currentNode != null) {
+            stack.push(currentNode);
+            currentNode = currentNode.left;
+        }
+
+        // remove nodes from stack
+        currentNode = stack.pop();
+
+        // if we are at the desired position return it
+        if(--k == 0) return currentNode.val;
+
+        // go to right when no left available
+        currentNode = currentNode.right;
+    }
 };
