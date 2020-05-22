@@ -18,7 +18,7 @@ const fallingSquares = positions => {
     // this will store the limits of fallen squares plus their height [[left limit, right limit], height]
     const hash = [];
 
-    // this will store the heighest point in the whole plane after each square drop
+    // this will store the highest point in the whole plane after each square drop
     let maxHeight = 0;
 
     const N = positions.length;
