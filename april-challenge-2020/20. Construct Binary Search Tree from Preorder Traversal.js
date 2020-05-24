@@ -27,7 +27,6 @@ const addNode = (root, val) => {
 // bstFromPreorder :: TreeNode T => [Number] -> T
 var bstFromPreorder = function(preorder) {
     if(preorder.length === 0) return null
-    if(preorder.length === 0) return new TreeNode(preorder[0]);
 
     let result = new TreeNode(preorder[0]);
 
