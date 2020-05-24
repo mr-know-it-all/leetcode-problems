@@ -12,7 +12,7 @@
  * }
  */
 
-// addNode :: TreeNode T => (T, Number) -> Number
+// addNode :: TreeNode T => (T, Number) -> T
 const addNode = (root, val) => {
     if(root === null) return new TreeNode(val);
 
