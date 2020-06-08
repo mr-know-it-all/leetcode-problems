@@ -1,7 +1,7 @@
 // Given an integer, write a function to determine if it is a power of two.
 
 // SOLUTON 1:
-// TODO: add fater solution
+// TODO: add faster solution
 
 // isPowerOfTwo :: Number -> Boolean
 const isPowerOfTwo = n => {
