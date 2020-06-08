@@ -16,3 +16,16 @@ const isPowerOfTwo = n => {
 
     return false;
 };
+
+
+// SOLUTON 2:
+
+// Intuition:
+/*
+    A power of two has only one bit set to one in binary.
+    If n is power of 2, (n - 1) will have all bits flipped, e.g.: 4 (100) becomes 3 (011).
+    n & (n - 1) will cancel out all bits in for every n that is a power of 2.
+*/
+
+// isPowerOfTwo :: Number -> Boolean
+const isPowerOfTwo = n => n > 0 && (n & (n - 1)) === 0;
