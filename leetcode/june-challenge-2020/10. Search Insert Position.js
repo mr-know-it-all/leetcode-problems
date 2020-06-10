@@ -2,32 +2,6 @@
 
 // You may assume no duplicates in the array.
 
-// SOLUTION 1:
-// a bit cumbersome
-
-// searchInsert :: ([[Number]], Number) -> Number
-const searchInsert = (nums, target) => {
-    let start = 0;
-    let end = nums.length;
-    let mid;
-
-    while(start < end) {
-        mid = Math.floor((start + end) / 2);
-
-        if(nums[mid] === target) return mid;
-
-        if(nums[mid] < target) start = mid + 1;
-        else if(nums[mid] > target) end = mid - 1;
-    }
-
-    if(nums[mid] > target) mid = Math.max(0, mid - 1);
-    while(nums[mid] < target) mid = mid + 1;
-
-    return mid;
-};
-
-// SOLUTION 2:
-
 // searchInsert :: ([[Number]], Number) -> Number
 const searchInsert = (nums, target) => {
     let start = 0;
