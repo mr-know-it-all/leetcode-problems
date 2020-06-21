@@ -27,7 +27,7 @@ var calculateMinimumHP = function(dungeon) {
             // basically, at each dungeon cell starting from the princess cell,
             // we ask how many hp do we need, at a minimum, to be in that cell
             // A. for the princess cell the answer is maximum of (1, 1 (-) dungeon cell)
-            // B> for the others is maxmum of (1, previous hp cell [actually future hp cell :D] (-) dungeon cell)
+            // B. for the others is maxmum of (1, previous hp cell [actually future hp cell :D] (-) dungeon cell)
             // previous hp cell will be min of right or down starting from princess hp cell, the base case
 
             // if: (1 or minimum of previous hp cell value (-) dungeon cell) < 1
