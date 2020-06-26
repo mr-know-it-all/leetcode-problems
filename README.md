@@ -1,2 +1,2 @@
-# leetcode-problems
-Solutions to leetcode (https://leetcode.com) problems. 
+# programming-problems
+Solutions to various programming problems. 
