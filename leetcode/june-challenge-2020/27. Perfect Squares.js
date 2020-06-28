@@ -3,7 +3,7 @@
 const isSquare = n => Math.sqrt(n) % 1 === 0;
 
 // numSquares :: Number -> Number
-var numSquares = function(n) {
+const numSquares = n => {
     const cache = {};
     let result = Infinity;
 
