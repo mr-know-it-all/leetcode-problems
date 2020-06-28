@@ -12,7 +12,6 @@
 // Explanation: 1
 
 // SOLUTION 1:
-// TODO: write faster solution
 
 const isSquare = n => Math.sqrt(n) % 1 === 0;
 
@@ -40,4 +39,21 @@ const numSquares = n => {
     })(n);
 
     return result;
+};
+
+// SOLUTION 2:
+
+// numSquares :: Number -> Number
+const numSquares = function(n) {
+    let dp = [0];
+
+    for(let i = 1; i <= n; i++) {
+        dp[i] = Infinity;
+
+        for(let j = 1; j * j <= i; j++) {
+            dp[i] = Math.min(dp[i], dp[i - j * j] + 1);
+        }
+    }
+
+    return dp[n];
 };
