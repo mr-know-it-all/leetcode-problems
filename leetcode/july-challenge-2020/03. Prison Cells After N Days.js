@@ -41,6 +41,7 @@
 
 // SOLUTION 1:
 
+
 // cellState :: (undefined | Number, undefined | Number) -> Number
 const cellState = (left, right) => left === right ? 1 : 0;
 
@@ -49,10 +50,8 @@ const prisonAfterNDays = (cells, N) => {
     N = N % 14 == 0 ? 14 : N % 14;
 
     while(N--) {
-        cells = cells.reduce((acc, val, index, xs) => {
-            return [...acc, cellState(xs[index - 1], xs[index + 1])];
-        }, []);
+        cells = cells.reduce((acc, val, i, xs) => [...acc, cellState(xs[i - 1], xs[i + 1])], []);
     }
 
-    return (cells);
+    return cells;
 };
