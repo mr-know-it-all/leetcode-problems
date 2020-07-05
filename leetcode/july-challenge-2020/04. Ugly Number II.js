@@ -27,7 +27,7 @@ const nthUglyNumber = n => {
         let y = dp[i3] * 3;
         let z = dp[i5] * 5;
 
-        let next = Math.min(Math.min(x, y), z);
+        let next = Math.min(x, y, z);
         dp.push(next);
 
         if(next === x) i2++;
