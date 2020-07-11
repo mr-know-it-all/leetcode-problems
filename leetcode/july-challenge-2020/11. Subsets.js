@@ -39,7 +39,7 @@ const subsets = nums => {
 const subsets = nums => {
     const result = [[]];
 
-	for(num of nums) {
+    for(num of nums) {
         const subsets = result.map(subset => subset.concat(num));
         for(subset of subsets) result.push(subset);
     }
