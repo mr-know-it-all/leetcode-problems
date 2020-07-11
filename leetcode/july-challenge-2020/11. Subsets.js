@@ -44,5 +44,5 @@ const subsets = nums => {
         for(subset of subsets) result.push(subset);
     }
 
-	return result;
+    return result;
 };
