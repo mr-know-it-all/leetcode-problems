@@ -21,13 +21,13 @@
 
 // subsets :: [Number] -> [[Number]]
 const subsets = nums => {
-    const result = [];
+  const result = [];
 
 	(function compute(acc, index) {
-		result.push(acc);
-		for(let i = index; i < nums.length; i++) {
-			compute([...acc, nums[i]], i + 1);
-		}
+      result.push(acc);
+      for(let i = index; i < nums.length; i++) {
+          compute([...acc, nums[i]], i + 1);
+      }
 	})([], 0);
 
 	return result;
