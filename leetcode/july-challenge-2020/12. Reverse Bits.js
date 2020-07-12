@@ -34,7 +34,7 @@ const reverseBits = n => {
 };
 
 // SOLUTION 2:
-// (could make it faster by spliting and saving in cache aprts of binary numbers)
+// (could make it faster by spliting and saving in cache parts of binary numbers)
 
 const cache = {};
 
