@@ -18,7 +18,9 @@
 // -100.0 < x < 100.0
 // n is a 32-bit signed integer, within the range [−231, 231 − 1]
 
-// x^n = x^(n/2) * x^(n/2)// myPow :: (Number, Number) -> Number
+// x^n = x^(n/2) * x^(n/2)
+
+// myPow :: (Number, Number) -> Number
 const myPow = (x, n) => {
     if(n === 0) return 1;
     if(n < 0) x = 1 / x;
