@@ -82,4 +82,38 @@ const topKFrequent = (nums, k) => {
 
         if(larger.length === k) return larger;
     }
+};
+
+// SOLUTION 4:
+
+// topKFrequent :: ([Number], Number) -> Number
+const topKFrequent = (nums, k) => {
+    const N = nums.length;
+    if(k === N) return nums;
+
+    const count = {};
+    let bucket = Array.from({ length: N }, () => []);
+
+    const uniqueNums = new Set();
+    for(let num of nums) {
+        count[num] = (count[num] || 0) + 1;
+        uniqueNums.add(num);
+    }
+
+    for(let num of uniqueNums) {
+        bucket[N - count[num]].push(num);
+    }
+
+    const result = [];
+    for(let slot of bucket) {
+        if(!k) break;
+        if(slot.length === 0) continue;
+
+        while(slot.length > 0 && k) {
+            result.push(slot.shift());
+            k--;
+        }
+    }
+
+    return result;
 }
