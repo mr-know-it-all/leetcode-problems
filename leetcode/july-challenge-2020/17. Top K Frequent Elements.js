@@ -61,3 +61,25 @@ const topKFrequent = (nums, k) => {
 
     return [...uniqueNums].sort((a, b) => count[b] - count[a]).slice(0, k);
 };
+
+// SOLUTION 3:
+// O(n^2) worst case, sort of quick select approach without random pivot
+
+// topKFrequent :: ([Number], Number) -> Number
+const topKFrequent = (nums, k) => {
+    if(k === nums.length) return nums;
+
+    const count = {};
+    let uniqueNums = new Set();
+    for(let num of nums) {
+        count[num] = (count[num] || 0) + 1;
+        uniqueNums.add(num);
+    }
+
+    uniqueNums = Array.from(uniqueNums);
+    for(let num of uniqueNums) {
+        const larger = uniqueNums.filter(x => count[x] >= count[num]);
+
+        if(larger.length === k) return larger;
+    }
+}
