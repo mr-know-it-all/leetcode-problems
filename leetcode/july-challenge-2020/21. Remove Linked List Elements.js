@@ -14,7 +14,6 @@
  */
 
 // SOLUTION 1:
-// TODO: tidy up code
 
 // removeElements :: ListNode H, eq V => (H, V) -> H
 const removeElements = (head, val) => {
@@ -40,4 +39,14 @@ const removeElements = (head, val) => {
     }
 
     return result;
+};
+
+// SOLUTION 2
+
+// removeElements :: ListNode H, eq V => (H, V) -> H
+const removeElements = (head, val) => {
+    return !head ? null : (
+        (head.next = removeElements(head.next, val)),
+        head.val === val ? head.next : head
+    );
 };
