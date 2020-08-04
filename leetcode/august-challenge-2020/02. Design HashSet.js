@@ -26,6 +26,7 @@
 
 // SOLUTION 1:
 // (kind of a hack)
+// TODO: write actual textbook implementation
 
 // MyHashSet :: () -> Object
 const MyHashSet = function() { this.hash = {}; };
