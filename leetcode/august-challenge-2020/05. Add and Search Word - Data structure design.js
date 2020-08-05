@@ -52,7 +52,7 @@ function Trie() {
         let currentNode = this.root;
 
         for(let i = 0; i < word.length; i++) {
-            const key = word[i] // word.substr(0, i + 1); (alterrnative B)
+            const key = word[i];
 
             if(currentNode.children[key]) {
                 if(i === word.length - 1) currentNode.children[key].endWord = true;
