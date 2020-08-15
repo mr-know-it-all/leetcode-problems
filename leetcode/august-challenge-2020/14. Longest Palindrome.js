@@ -12,9 +12,6 @@
 //
 // Output:
 // 7
-//
-// Explanation:
-// One long
 
 // longestPalindrome :: String -> Number
 const longestPalindrome = str => {
