@@ -114,3 +114,30 @@ const mincostTickets = function(days, costs) {
 
     return compute();
 };
+
+// SOLUTION 3:
+
+// mincostTickets :: ([Number], [Number]) -> Number
+const mincostTickets = function(days, costs) {
+    const [_1, _7, _30] = costs;
+
+    const travelDays = {};
+    for(let day of days) travelDays[day] = true;
+
+    const dp = Array.from({ length: 366 });
+    dp[0] = 0;
+
+    for(let i = 1; i < 366; i++) {
+        if(!travelDays[i]) {
+            dp[i] = dp[i - 1];
+        } else {
+            dp[i] = Math.min(
+                dp[i - 1] + _1,
+                dp[Math.max(0, i - 7)] + _7,
+                dp[Math.max(0, i - 30)] + _30
+            );
+        }
+    }
+
+    return dp[365];
+};
