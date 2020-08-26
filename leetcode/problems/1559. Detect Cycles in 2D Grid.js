@@ -8,27 +8,38 @@
 //
 // Return true if any cycle of the same value exists in grid, otherwise, return false.
 
-// TODO: clean up code, at least rename variables to make the code easier to read
-// also describe the solution, add comments in code
-
 // containsCycle :: [[String]] -> Boolean
 const containsCycle = grid => {
     const [m, n] = [grid.length, grid[0].length];
     const visited = {};
 
-    const dfs = (i, j, ii = '*', jj = '*') => {
-        if(visited[i + '-' + j]) return true;
-        visited[i + '-' + j] = true;
+    const dfs = (node_i, node_j, parent_i = '*', parent_j = '*') => {
+        // we have a cycle
+        if(visited[node_i + '-' + node_j]) return true;
+        visited[node_i + '-' + node_j] = true;
 
-        for(let [_i, _j] of [[i - 1, j], [i + 1, j], [i, j + 1], [i, j - 1]]) {
-            if(0 <= _i && _i < m && 0 <= _j && _j < n) {
-                if(grid[i][j] === grid[_i][_j] && (_i + '-' + _j) !== (ii + '-' + jj)) {
-                    if(dfs(_i, _j, i, j)) return true;
+        const possibleDirections = [
+            [node_i - 1, node_j],
+            [node_i + 1, node_j],
+            [node_i, node_j + 1],
+            [node_i, node_j - 1]
+        ];
+        for(let [i, j] of possibleDirections) {
+            // is in bounds
+            if(0 <= i && i < m && 0 <= j && j < n) {
+                if(
+                    // has same value as node, is in cycle
+                    grid[node_i][node_j] === grid[i][j] &&
+                    // not visiting parent again, avoid loops
+                    (i + '-' + j) !== (parent_i + '-' + parent_j)
+                ) {
+                    if(dfs(i, j, node_i, node_j)) return true;
                 }
             }
         }
         return false;
     }
+
     let found = false;
     f1:for(let i = 0; i < m; i++) {
         for(let j = 0; j < n; j++) {
