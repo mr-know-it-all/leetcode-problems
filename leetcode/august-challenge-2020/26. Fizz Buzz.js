@@ -12,10 +12,10 @@ const fizzBuzz = n => {
         const div5 = n % 5 === 0;
 
         return (
-            div3 && div5 ? 'FizzBuzz'
-            : div3 ? 'Fizz'
-            : div5 ? 'Buzz'
-            : String(n)
+            div3 && div5 ? 'FizzBuzz' :
+            div3 ? 'Fizz' :
+            div5 ? 'Buzz' :
+            String(n)
         );
     });
 };
