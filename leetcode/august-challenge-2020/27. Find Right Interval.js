@@ -15,8 +15,10 @@ const findRightInterval = intervals => {
     const map = {};
 
     for(let i = 0; i < intervals.length; i++) {
-        list.push(intervals[i][0]);
-        map[intervals[i][0]] = i;
+        const start = intervals[i][0];
+
+        list.push(start);
+        map[start] = i;
     }
 
     list.sort((a, b) => a - b);
