@@ -70,6 +70,7 @@ const removeCoveredIntervals = intervals => {
 const removeCoveredIntervals = (intervals) => {
     let count = 0;
     let curr = [-1, -1];
+    // sort by start time in order to be able to compare consecutive intervals
     intervals.sort(([a,], [b,]) => a - b);
     
     for(let int of intervals) {
