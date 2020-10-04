@@ -37,7 +37,6 @@
 // All the intervals are unique.
 
 // SOLUTON 1
-// TODO: write smarter solution
 // not TLE, but slow O(N^2)
 
 // removeCoveredIntervals :: [[Number]] -> Number 
@@ -62,4 +61,34 @@ const removeCoveredIntervals = intervals => {
     }
 
     return count;
+};
+
+// SOLUTON 2
+// O(NlogN)
+
+// removeCoveredIntervals :: [[Number]] -> Number 
+const removeCoveredIntervals = (intervals) => {
+    let count = 0;
+    let curr = [-1, -1];
+    intervals.sort(([a,], [b,]) => a - b);
+    
+    for(let int of intervals) {
+        const [a, b] = curr;
+        const [aa, bb] = int;
+        
+        // curr includes int
+        if(a <= aa && b >= bb) {
+            count++;
+        } else {
+            // int includes curr
+            if(aa <= a && bb >= b) {
+                count++;
+            }
+
+            // int becomes curr if not included in curr
+            curr = int;
+        }
+    }
+    
+    return intervals.length - count;
 };
