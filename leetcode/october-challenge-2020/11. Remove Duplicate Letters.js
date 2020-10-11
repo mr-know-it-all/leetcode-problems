@@ -60,6 +60,39 @@ const removeDuplicateLetters = s => {
         // char becomes used, can be "free" again if greater than next char
         used[char] = true;
     }
+
+// SOLUTION 2:
+// small variation from fisrt solution 
+
+// removeDuplicateLetters :: String -> String
+const removeDuplicateLetters = s => {
+    if(s.length <= 1) return s;
+    
+    let lastInd = {};
+    for(let i = 0; i < s.length; i++) lastInd[s[i]] = i;
+    
+    let added = {};
+    const stack = [];
+    
+    for(let i = 0; i < s.length; i++) {
+        const char = s[i];
+        
+        if(added[char]) continue;
+        
+        while(
+            stack.length &&
+            char < stack[stack.length - 1] &&
+            lastInd[stack[stack.length - 1]] > i
+        ) {
+            added[stack.pop()] = false;
+        }
+        
+        stack.push(char);
+        added[char] = true;
+    }
+    
+    return stack.join('');
+};
     
     return res.join('');
 };
