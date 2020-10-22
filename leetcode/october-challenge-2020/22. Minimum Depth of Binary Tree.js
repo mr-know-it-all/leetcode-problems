@@ -67,3 +67,29 @@ const minDepth = root => {
         )
     })(root);
 };
+
+// SOLUTION 3:
+
+// minDepth :: TreeNode T => T -> T
+const minDepth = root => {
+    if(!root) return 0;
+
+    const q = [root];
+    let depth = 1;
+
+    while(q.length > 0) {
+        const len = q.length;
+        
+        for(let _ = 0; _ < len; _++) {
+            let node = q.shift();
+            
+            if(!node.left && !node.right) return depth;
+            if(node.left) q.push(node.left);
+            if(node.right) q.push(node.right); 
+        }
+        
+        depth++;
+    }
+    
+    return depth;
+};
