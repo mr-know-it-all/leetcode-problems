@@ -31,6 +31,8 @@
  * }
  */
 
+// SOLUTION 1:
+
 // minDepth :: TreeNode T => T -> T
 const minDepth = root => {
     if(!root) return 0;
@@ -48,4 +50,29 @@ const minDepth = root => {
     })(root);
     
     return min;
+};
+
+// SOLUTION 2:
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+
+// minDepth :: TreeNode T => T -> T
+const minDepth = root => {
+    if(!root) return 0;
+
+    return (function dfs(node, acc = 0) {
+        if(!node.left && !node.right) return acc + 1; 
+        
+        return Math.min(
+            node.left ? dfs(node.left, acc + 1) : Infinity,
+            node.right ? dfs(node.right, acc + 1) : Infinity
+        )
+    })(root);
 };
