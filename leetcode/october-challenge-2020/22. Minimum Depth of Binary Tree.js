@@ -54,15 +54,6 @@ const minDepth = root => {
 
 // SOLUTION 2:
 
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
-
 // minDepth :: TreeNode T => T -> T
 const minDepth = root => {
     if(!root) return 0;
