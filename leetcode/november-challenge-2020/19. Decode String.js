@@ -49,7 +49,7 @@ const decodeString = s => {
         } else if (c === ']') {
             let reps = stack.pop();
             let prevStr = stack.pop();
-            str = prevStr +   str.repeat(+reps);
+            str = prevStr + str.repeat(+reps);
         } else if (+c || c === '0') {
             reps += c;
         } else {
