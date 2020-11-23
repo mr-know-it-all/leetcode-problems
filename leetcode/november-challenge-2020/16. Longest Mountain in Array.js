@@ -54,7 +54,6 @@ const longestMountain = A => {
 
 // SOLUTION 2:
 
-
 // longestMountain :: [Number] -> Number
 const longestMountain = list => {
     let max = 0;
