@@ -36,6 +36,8 @@
  * }
  */
 
+// SOLUTION 1:
+
 // getHeight :: TreeNode -> Number
 const getHeight = node => {
     if(!node) return 0;
@@ -56,4 +58,27 @@ const isBalanced = (node) => {
     if(Math.abs(l - r) <= 1) return isBalanced(node.left) && isBalanced(node.right);
     else return false;
     
+};
+
+// SOLUTION 2:
+
+// getHeight :: TreeNode -> Number
+const getHeight = node => {
+    if(!node) return 0;
+
+    const left = getHeight(node.left);
+    if(left === -1) return -1;
+    const right = getHeight(node.right);
+    if(right === -1) return -1;
+
+    if(Math.abs(left - right) > 1) return -1;
+    
+    return Math.max(left, right) + 1;
+};
+
+// isBalanced :: TreeNode -> Boolean
+const isBalanced = (node) => {
+    if(!node) return true;
+    
+    return getHeight(node) !== -1;
 };
