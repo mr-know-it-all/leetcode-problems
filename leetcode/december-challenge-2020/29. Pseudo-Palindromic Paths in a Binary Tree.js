@@ -54,7 +54,6 @@ const pseudoPalindromicPaths = root => {
         else newNums[node.val] = 1;
         
         if(!node.left && !node.right) {
-            //console.log('--', newNums)
             if(newNums.filter(Boolean).length <= 1) count++;
             return;
         }
