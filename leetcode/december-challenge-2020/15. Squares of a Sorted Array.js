@@ -46,7 +46,7 @@ const addToSortedList = nums => x => {
 const sortedSquares = nums => {
     let negative = [];
     
-    while(nums[0] < 0) negative.push(Math.pow(nums.shift(), 2));
+    while(nums[0] < 0) negative.unshift(Math.pow(nums.shift(), 2));
     for(let i = 0; i < nums.length; i++) nums[i] = Math.pow(nums[i], 2);
     while(negative.length !== 0) addToSortedList(nums)(negative.pop());
     

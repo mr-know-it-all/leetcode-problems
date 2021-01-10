@@ -35,6 +35,7 @@ const canPlaceFlowers = (fb, n) => {
         
         if(prev + curr + next === 0) {
             fb[i] = 1;
+            i++;
             placed++;
         }
         
