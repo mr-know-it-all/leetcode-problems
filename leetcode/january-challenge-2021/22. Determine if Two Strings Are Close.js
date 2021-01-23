@@ -89,3 +89,39 @@ const closeStrings = (word1, word2) => {
     
     return true;
 };
+
+// SOLUTION 2:
+
+// closeStrings :: (String, String) -> String
+const closeStrings = (word1, word2) => {
+    let f1 = {};
+    const s1 = [];
+    for(let c of word1) {
+        f1[c] = (f1[c] || 0) + 1;
+        s1.push(c);
+    }
+    
+    let f2 = {};
+    const s2 = [];
+    for(let c of word2) {
+        if(!f1[c]) return false;
+        
+        f2[c] = (f2[c] || 0) + 1;
+        s2.push(c);
+    }
+    
+    s1.sort();
+    s2.sort();
+    
+    if(s1.join('-') === s2.join('-')) return true;
+    
+    f1 = Object.values(f1);
+    f2 = Object.values(f2);
+    
+    f1.sort();
+    f2.sort();
+    
+    if(f1.join('-') === f2.join('-')) return true;
+    
+    return false;
+};
