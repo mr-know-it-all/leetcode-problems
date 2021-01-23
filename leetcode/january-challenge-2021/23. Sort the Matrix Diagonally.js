@@ -57,11 +57,10 @@ const diagonalSort = function(matrix) {
 
 // SOLUTION 2:
 
+// insert :: Ord a => [a] -> a -> ()
 const insert = xs => x => {
     let i = 0;
-    
     while(x > xs[i]) i++;
-    
     xs.splice(i, 0, x)
 }
 
