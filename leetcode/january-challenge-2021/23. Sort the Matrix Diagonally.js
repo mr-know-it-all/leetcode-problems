@@ -30,20 +30,20 @@ const diagonalSort = function(matrix) {
     
     for(let i = 0; i < n; i++) {
         const start = `0:${i}`;
-        const diagonal = [];
+        diagonals[start] = [];
         let [x, y] = [0, i];
-        while(matrix[x] && matrix[x][y]) diagonal.push(matrix[x++][y++]);
+        while(matrix[x] && matrix[x][y]) diagonals[start].push(matrix[x++][y++]);
         
-        diagonals[start] = diagonal.sort((a, b) => a - b);
+        diagonals[start].sort((a, b) => a - b);
     }
 
     for(let i = 0; i < m; i++) {
         const start = `${i}:0`;
-        const diagonal = [];
+        diagonals[start] = [];
         let [x, y] = [i, 0];
-        while(matrix[x] && matrix[x][y]) diagonal.push(matrix[x++][y++]);
+        while(matrix[x] && matrix[x][y]) diagonals[start].push(matrix[x++][y++]);
         
-        diagonals[start] = diagonal.sort((a, b) => a - b);
+        diagonals[start].sort((a, b) => a - b);
     }
 
     for(let [start, diagonal] of Object.entries(diagonals)) {
@@ -57,3 +57,43 @@ const diagonalSort = function(matrix) {
 
 // SOLUTION 2:
 
+const insert = xs => x => {
+    let i = 0;
+    
+    while(x > xs[i]) i++;
+    
+    xs.splice(i, 0, x)
+}
+
+// diagonalSort :: [[Number]] -> [[Number]]
+const diagonalSort = function(matrix) {
+    let m = matrix.length;
+    if(m === 0) return matrix;
+    let n = matrix[0].length;
+
+    const diagonals = {};
+    
+    for(let i = 0; i < n; i++) {
+        const start = `0:${i}`;
+        diagonals[start] = [];
+        let [x, y] = [0, i];
+        while(matrix[x] && matrix[x][y])
+            insert(diagonals[start])(matrix[x++][y++]);
+    }
+
+    for(let i = 0; i < m; i++) {
+        const start = `${i}:0`;
+        diagonals[start] = [];
+        let [x, y] = [i, 0];
+        while(matrix[x] && matrix[x][y])
+            insert(diagonals[start])(matrix[x++][y++]);
+    }
+
+    for(let [start, diagonal] of Object.entries(diagonals)) {
+        let [x, y] = start.split(':');
+        
+        for(let val of diagonal) matrix[x++][y++] = val;
+    }
+    
+    return matrix;
+};
