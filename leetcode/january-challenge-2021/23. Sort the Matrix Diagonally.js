@@ -96,3 +96,36 @@ const diagonalSort = function(matrix) {
     
     return matrix;
 };
+
+// SOLUTION 3:
+
+// insert :: Ord a => [a] -> a -> ()
+const insert = xs => x => {
+    let i = 0;
+    while(x > xs[i]) i++;
+    xs.splice(i, 0, x)
+}
+
+// diagonalSort :: [[Number]] -> [[Number]]
+const diagonalSort = function(matrix) {
+    let m = matrix.length;
+    if(m === 0) return matrix;
+    let n = matrix[0].length;
+
+    const diagonals = {};
+    
+    for(let i = 0; i < m; i++) {
+        for(let j = 0; j < n; j++) {
+            if(!diagonals[i - j]) diagonals[i - j] = [];
+            insert(diagonals[i - j])(matrix[i][j]);
+        }
+    }
+    
+    for(let i = 0; i < m; i++) {
+        for(let j = 0; j < n; j++) {
+           matrix[i][j] = diagonals[i - j].shift();
+        }
+    }
+    
+    return matrix;
+};
