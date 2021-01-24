@@ -64,3 +64,29 @@ const mergeKLists = list => {
     
     return result.next;
 };
+
+// SOLUTION 2:
+
+// mergeLists :: ListNode N => [N] -> N
+const mergeKLists = list => {
+    if(list.length === 0) return null;
+    
+    let pool = [];
+    for(let node of list) {
+        let pointer = node;
+        while(pointer) {
+            pool.push(pointer.val);
+            pointer = pointer.next;
+        }
+    }
+    pool.sort((a, b) => a - b);
+    
+    const result = new ListNode(-1);
+    let pointer = result;
+    for(let val of pool) {
+        pointer.next = new ListNode(val);
+        pointer = pointer.next;
+    }
+        
+    return result.next;
+};
