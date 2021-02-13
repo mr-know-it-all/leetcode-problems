@@ -82,3 +82,43 @@ const copyRandomList = (head) => {
 
     return res;
 };
+
+// SOLUTION 2:
+// TODO: add some descripting comments
+
+// copyRandomList :: Node -> Node 
+const copyRandomList = (head) => {
+    if(!head) return null;
+    
+    let pointer = head;
+    while(pointer) {
+        const next = pointer.next;
+        
+        pointer.next = new Node(pointer.val);
+        pointer.next.next = next;
+        
+        pointer = next;
+    }
+    
+    pointer = head;
+    while(pointer) {
+        if(pointer.random) {
+            pointer.next.random = pointer.random.next;
+        }
+        
+        pointer = pointer.next.next;
+    }
+    
+    pointer = head;
+    let res = head.next;
+    let resPointer = res;
+    
+    while(pointer) {
+        pointer.next = pointer.next.next;
+        pointer = pointer.next;
+        resPointer.next = resPointer.next ? resPointer.next.next : null;
+        resPointer = resPointer.next;
+    }
+    
+    return res;
+};
