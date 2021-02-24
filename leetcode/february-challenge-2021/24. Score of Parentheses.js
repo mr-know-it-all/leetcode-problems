@@ -58,3 +58,20 @@ const scoreOfParentheses = (s) => {
 };
 
 // SOLUTION 2:
+
+// scoreOfParentheses :: String -> Number
+const scoreOfParentheses = (s) => {
+    let count = 0;
+    let stack = [];
+    
+    for(const c of s) {
+        if(c === '(') {
+            stack.push(count);
+            count = 0;
+        } else {
+            count = stack.pop() + Math.max(count * 2, 1);
+        }
+    }
+    
+    return count;
+};
