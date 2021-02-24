@@ -56,3 +56,5 @@ const scoreOfParentheses = (s) => {
     
     return compute(s.split(''));
 };
+
+// SOLUTION 2:
