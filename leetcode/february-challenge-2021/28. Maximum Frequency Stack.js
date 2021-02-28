@@ -46,20 +46,16 @@ class FreqStack {
     }
     // push :: Number -> ()
     push(x) {
-        const _ = this;
-
-        if(!_.freq[x]) _.freq[x] = 0;
-        if(_.freq[x] > _.top) _.top = _.freq[x];
-        _.stack[_.freq[x]].push(x);
-        _.freq[x]++;
+        if(!this.freq[x]) this.freq[x] = 0;
+        if(this.freq[x] > this.top) this.top = this.freq[x];
+        this.stack[this.freq[x]].push(x);
+        this.freq[x]++;
     }
     // pop :: () -> Number
     pop() {
-        const _ = this;
-
-        let x = _.stack[_.top].pop();
-        _.freq[x]--;
-        if(_.stack[_.freq[x]].length === 0) _.top--;
+        let x = this.stack[this.top].pop();
+        this.freq[x]--;
+        if(this.stack[this.freq[x]].length === 0) this.top--;
         return x;
     }
 }
