@@ -69,3 +69,54 @@ Solution.prototype.pick = function() {
 // after all rectangles are processed, generate random number from 0 to sum of all points in rectangles
 // using the areaSumSoFar values find the rectangle to which that random number belongs
 // after that, generate a random x from x1 to x2 and random y from y1 to y2 in the selected rectangle
+
+// SOLUTION 2:
+//TODO: clean up code
+
+// rand :: (Number, Number) -> Number
+function rand(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+const area = (rect) => {
+  const [x1, y1, x2, y2] = rect;
+  const L = Math.abs(y2 - y1) + 1;
+  const l = Math.abs(x2 - x1) + 1;
+  
+  return L * l;
+};
+
+const Solution = function(rects) {
+  this.rects = rects;
+  this.areaSoFar = [];
+  this.sum = 0;
+  
+  for(let i = 0; i < this.rects.length; i++) {
+    const key = area(rects[i]);
+    
+    this.areaSoFar.push([this.sum, i]);
+    this.sum += key;
+  }
+};
+
+Solution.prototype.pick = function() {
+  const randArea = rand(0, this.sum);
+  let rect = null;
+  
+  for(let i = 1; i < this.areaSoFar.length; i++) {
+    let el = this.areaSoFar[i];
+    let prev = this.areaSoFar[i - 1];
+    
+    if(el[0] > randArea) {
+      rect = this.rects[prev[1]];
+      break;
+    }
+  }
+  if(rect === null) rect = this.rects[this.rects.length - 1];
+  
+  const [x1, y1, x2, y2] = rect;
+  
+  return [rand(x1, x2), rand(y1, y2)];
+};
