@@ -67,7 +67,7 @@ const maxProfit = (prices, fee) => {
   let yesStock = -prices[0];
   
   for(let i = 1; i < n; i++) {
-    // do nothing or sale last bought stock
+    // do nothing or sale stock
     noStock = Math.max(noStock, yesStock + (prices[i] - fee));
     // do nothing or buy stock
     yesStock = Math.max(yesStock, noStock - prices[i]);
