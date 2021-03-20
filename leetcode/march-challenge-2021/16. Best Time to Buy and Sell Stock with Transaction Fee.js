@@ -64,6 +64,7 @@ const maxProfit = (prices, fee) => {
   if(n === 0) return 0;
   
   let noStock = 0;
+  // buy stock at price[0]
   let yesStock = -prices[0];
   
   for(let i = 1; i < n; i++) {
