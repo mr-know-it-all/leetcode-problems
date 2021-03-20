@@ -53,3 +53,33 @@ const wiggleMaxLength = (nums) => {
       
     return Math.max(find(1, true), find(1, false));
   };
+
+  // SOLUTION 2:
+
+  // wiggleMaxLength :: [Number] -> Number
+const wiggleMaxLength = (nums) => {
+  const n = nums.length;
+        
+  if(n === 0 ) return 0;
+        
+  const up = new Array(n).fill(0);
+  const down = new Array(n).fill(0);
+        
+  up[0] = 1;
+  down[0] = 1;
+        
+  for(let i = 1 ; i < n; i++){
+    if(nums[i] > nums[i-1] ) {
+      up[i] = down[i-1]+1;
+      down[i] = down[i-1];
+    } else if(nums[i] < nums[i-1]) {
+      down[i] = up[i-1]+1;
+      up[i] = up[i-1];
+    } else {
+      down[i] = down[i-1];
+      up[i] = up[i-1];
+    }
+  }
+        
+  return Math.max(down[n - 1],up[n - 1]);
+};
