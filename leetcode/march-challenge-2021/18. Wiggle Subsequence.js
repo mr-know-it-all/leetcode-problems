@@ -56,7 +56,7 @@ const wiggleMaxLength = (nums) => {
 
   // SOLUTION 2:
 
-  // wiggleMaxLength :: [Number] -> Number
+// wiggleMaxLength :: [Number] -> Number
 const wiggleMaxLength = (nums) => {
   const n = nums.length;
         
