@@ -30,7 +30,8 @@
  * @param {string} s
  * @return {number}
  */
- var longestValidParentheses = function(s) {
+// longestValidParentheses :: String -> Number
+const longestValidParentheses = (s) => {
     let max = 0;
     let stack = [-1];
   
