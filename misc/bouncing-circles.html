@@ -1,0 +1,163 @@
+<!--
+  TODO:
+  - same implementation with canvas
+  - try to implement it in pure css if that's possible
+-->
+<!DOCTYPE html>
+<html lang="en_GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Circles</title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: black;
+      }
+      #container {
+        box-sizing: border-box;
+        position: relative;
+        border: 1px solid green;
+        height: 600px;
+        width: 1100px;
+      }
+    </style>
+</head>
+<body>
+
+
+<input id="no-of-circles" type="number" />
+<button id='render'>Render</button>
+<div id="container" resizable></div>
+
+<script>
+  document.getElementById('render').addEventListener('click', e => {
+    const n = document.getElementById('no-of-circles');
+    document.getElementById('container').innerHTML = "";
+    render(n.value, document.getElementById('container'));
+  });
+
+  let reqId;
+  function render(noOfCircles, container) {
+    if(reqId) window.cancelAnimationFrame(reqId);
+    const elems = Array.from({ length: noOfCircles }, (_, i) => i);
+    const boundaries = getBoundaries(container);
+
+    for(let _ of elems) {
+      let circleElement = buildCircleElement(boundaries);
+      container.appendChild(circleElement);
+    }
+
+    const step = function step(timestamp) {
+      const circles = Array.from(document.querySelectorAll('.circle'))
+      for(circle of circles) {
+        updateCirclePosition(circle, boundaries);
+      }
+      reqId = window.requestAnimationFrame(step);
+    }
+    reqId = window.requestAnimationFrame(step);
+  }
+
+  // TODO: refactor this function, clean it up
+  function updateCirclePosition(circle, boundaries) {
+    const [left, right, top, bottom] = boundaries;
+
+    const xSpeed = circle.dataset.xSpeed;
+    const ySpeed = circle.dataset.ySpeed;
+    const size = circle.dataset.size;
+
+    let direction = circle.dataset.direction;
+    let [topDir, leftDir] = direction.split(':');
+
+    let newTop = +circle.style.top.replace('px', '') + (+topDir * xSpeed);
+    let newLeft = +circle.style.left.replace('px', '') + (+leftDir * ySpeed);
+
+    if(newTop < top) {
+      circle.dataset.direction = 1 + ':' + leftDir;
+    }
+    if(newTop > bottom - size) {
+      circle.dataset.direction = -1 + ':' + leftDir;
+    }
+    if(newLeft < left) {
+      circle.dataset.direction = topDir + ':' + 1;
+    }
+    if(newLeft > right - size) {
+      circle.dataset.direction = topDir + ':' + -1;
+    }
+
+    direction = circle.dataset.direction;
+    [topDir, leftDir] = direction.split(':');
+
+    newTop = +circle.style.top.replace('px', '') + (+topDir * xSpeed) + 'px';
+    newLeft = +circle.style.left.replace('px', '') + (+leftDir * ySpeed) + 'px';
+
+    circle.style.top = newTop;
+    circle.style.left = newLeft;
+  }
+
+  function getBoundaries(elem) {
+    const pos = elem.getBoundingClientRect();
+    return [pos.left, pos.width, 0, pos.height];
+  }
+
+  function buildCircleElement(boundaries) {
+    const circle = document.createElement('span');
+    circle.classList.add('circle');
+
+    circle.style.display = 'block';
+    circle.style.position = 'absolute';
+    circle.style.borderRadius = '50%';
+    circle.style.backgroundColor = getRandomColor();
+
+    const size = getRandomSize();
+    circle.style.height = `${size}px`;
+    circle.style.width = `${size}px`;
+    
+    const [top, left] = getRandomPos(size, boundaries);
+    circle.style.top = `${top}px`;
+    circle.style.left = `${left}px`;
+
+    circle.dataset.direction = getRandomDirection();
+    circle.dataset.xSpeed = getRandomSpeed();
+    circle.dataset.ySpeed = getRandomSpeed();
+    circle.dataset.size = size;
+
+    return circle;
+  }
+
+  function getRandomPos(size, boundaries) {
+    const [left, right, top, bottom] = boundaries;
+
+    const _top = getRand(top, bottom - size); 
+    const _left  = getRand(left, right - size); 
+    return [_top, _left];
+  }
+
+  function getRandomSize(n) {
+    return getRand(10, 100);
+  }
+
+  function getRandomColor() {
+    let colors = ['white', 'red', 'blue', 'green',  'black'];
+
+    return colors[getRand(0, 5)];
+  }
+
+  function getRandomDirection() {
+    const dirs = ['1:1', '-1:1', '-1:-1', '1:-1'];
+    return dirs[getRand(0, 4)];
+  }
+
+  function getRandomSpeed() {
+    return getRand(1, 7);
+  }
+
+  function getRand(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+</script>
+
+</body>
+</html>
