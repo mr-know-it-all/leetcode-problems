@@ -39,3 +39,22 @@ const countPrimes = (n) => {
     
     return count;
 };
+
+// SOLUTION 2:
+
+// countPrimes :: Number -> Number
+const countPrimes = (n) => {
+    const primes = new Array(n).fill(true);
+    
+    for(let i = 2; i < n; i++) {
+        if(!primes[i]) continue;
+        
+        for(let j = i * i; j < n; j += i) {
+            primes[j] = false;
+        }
+    }
+    
+    let count = 0;
+    for(let i = 2; i < n; i++) if(primes[i]) count++;
+    return count;
+};

@@ -26,6 +26,7 @@ const maxCoins = nums => {
         for(let i = 1; i + len <= n + 1; i++) {
             const j = i + len - 1;
             for (let k = i; k <= j; k++) {
+                // max value from index i to j
                 dp[i][j] = Math.max(
                     dp[i][j],
                     dp[i][k - 1] + vals[i - 1] * vals[k] * vals[j + 1] + dp[k + 1][j]
