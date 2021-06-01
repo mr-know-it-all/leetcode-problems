@@ -22,6 +22,7 @@
 // 0 <= nums[i] <= 109
 
 // TODO: find linear solution
+
 // maximumGap :: [Number] -> Number
 const maximumGap = (nums) => {
     nums.sort((a, b) => a - b);
