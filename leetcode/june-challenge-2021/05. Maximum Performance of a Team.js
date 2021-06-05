@@ -51,7 +51,7 @@ function maxPerformance(
     const q/*: typeof MinPriorityQueue*/ = new MinPriorityQueue();
     
     for(const engineer of mostEff) {
-        // store its speed
+        // store the speed
         q.enqueue(speed[engineer]);
         sum += BigInt(speed[engineer]);
 
