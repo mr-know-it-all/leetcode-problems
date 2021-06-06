@@ -41,3 +41,24 @@ function longestConsecutive(nums: number[]): number {
     
     return max;
 };
+
+// SOLUTION 2:
+
+function _longestConsecutive(nums: number[]): number {
+    if(nums.length === 0) return 0;
+    
+    const set = new Set(nums);
+    let max: number = 1;
+    
+    for(let n of nums) {
+        if(!set.has(n - 1)) {
+            let m = n + 1;
+            
+            while(set.has(m)) {
+                m += 1;
+                max = Math.max(max, m - n);
+            }
+        }
+    }
+    return max;
+};
