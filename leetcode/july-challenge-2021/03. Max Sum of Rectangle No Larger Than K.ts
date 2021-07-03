@@ -85,7 +85,7 @@ function maxSumSubmatrix(matrix: number[][], k: number): number {
                 sums[row] += matrix[row][c2];
             }
             
-            // compute sum for every row
+            // compute sum starting from every row
             for(let r1 = 0; r1 < rows; r1++) {
                 let sum = 0;
                 
