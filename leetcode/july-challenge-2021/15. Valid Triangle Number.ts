@@ -29,7 +29,7 @@ const areTriangleSides = (a, b, c) => {
     return a + b > c && a + c > b && b + c > a;
 }
 
-function triangleNumber(nums: number[]): number {
+function _triangleNumber(nums: number[]): number {
     const n = nums.length;
     
     let count = 0;
@@ -46,4 +46,27 @@ function triangleNumber(nums: number[]): number {
 };
 
 // SOLUTION 2:
+// O(n ^ 2)
 
+function triangleNumber(nums: number[]): number {
+    const n = nums.length;
+    nums.sort((a, b) => a - b);
+    
+    let res = 0;
+    
+    for(let a = n - 1; a > 1; a--) {
+        let b = 0;
+        let c = a - 1;
+        
+        while(b < c) {
+            if(nums[b] + nums[c] > nums[a]) {
+                res += c - b;
+                c--;
+            } else {
+                b++;
+            }
+        }
+    }
+    
+    return res;
+};
